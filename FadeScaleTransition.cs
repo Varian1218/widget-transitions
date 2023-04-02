@@ -9,10 +9,9 @@ namespace WidgetTransitions
     public class FadeScaleTransition : MonoBehaviour
     {
         [SerializeField] private UnityEvent<float> fade;
-        [SerializeField] private ScriptableObjectGraphicRaycaster raycaster;
+        [SerializeField] private UnityEvent postTranslate;
+        [SerializeField] private UnityEvent preTranslate;
         [SerializeField] private UnityEvent<Vector3> scale;
-        [SerializeField] private UnityWidget widget;
-        [SerializeField] private ScriptableObjectWidgetFactory widgetFactory;
 
         public void Hide()
         {
@@ -21,10 +20,21 @@ namespace WidgetTransitions
 
         public IEnumerator HideAsync()
         {
-            raycaster.Enabled = false;
+            preTranslate.Invoke();
             yield return FadeScaleUtils.HideAsync(fade.Invoke, scale.Invoke);
-            widgetFactory.DestroyWidget(widget);
-            raycaster.Enabled = true;
+            postTranslate.Invoke();
+        }
+
+        public void Show()
+        {
+            StartCoroutine(ShowAsync());
+        }
+
+        public IEnumerator ShowAsync()
+        {
+            preTranslate.Invoke();
+            yield return FadeScaleUtils.ShowAsync(fade.Invoke, scale.Invoke);
+            postTranslate.Invoke();
         }
     }
 }
