@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 using UnityExtensions;
 using Widgets;
@@ -20,7 +19,7 @@ namespace WidgetTransitions
             StartCoroutine(HideAsync());
         }
 
-        private IEnumerator HideAsync()
+        public IEnumerator HideAsync()
         {
             raycaster.Enabled = false;
             yield return FadeScaleUtils.HideAsync(background.SetAlpha, layout.SetLocalScale);
