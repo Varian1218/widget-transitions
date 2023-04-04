@@ -1,8 +1,8 @@
 using System;
 using System.Collections;
-using Doubles;
 using Interpolations;
 using Maths;
+using Numerics;
 using Tween;
 using UnityEngine;
 
