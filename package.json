@@ -1,7 +1,7 @@
 {
   "description": "",
   "dependencies": {
-    "com.little-lion.doubles": "https://github.com/Varian1218/doubles.git",
+    "com.little-lion.numerics": "https://github.com/Varian1218/numerics.git",
     "com.little-lion.interpolations": "https://github.com/Varian1218/interpolations.git",
     "com.little-lion.maths": "https://github.com/Varian1218/maths.git",
     "com.little-lion.unity-extensions": "https://github.com/Varian1218/unity-extensions.git",
@@ -11,5 +11,5 @@
   "keywords": [],
   "name": "com.little-lion.widget-transitions",
   "unity": "2021.3",
-  "version": "1.0.6"
+  "version": "2.0.0"
 }
