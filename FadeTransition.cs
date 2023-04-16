@@ -10,7 +10,7 @@ namespace WidgetTransitions
     {
         [SerializeField] private UnityEvent<float> fade;
         [SerializeField] private ScriptableObjectGraphicRaycaster raycaster;
-        [SerializeField] private UnityWidget widget;
+        [SerializeField] private MonoBehaviourWidget widget;
         [SerializeField] private ScriptableObjectWidgetFactory widgetFactory;
 
         public void Hide()

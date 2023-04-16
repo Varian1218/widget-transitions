@@ -6,12 +6,12 @@ using Widgets;
 
 namespace WidgetTransitions
 {
-    public class FadeScaleTransition : MonoBehaviour
+    public class FadeScaleTransition : MonoBehaviour, ITransition
     {
         [SerializeField] private UnityEvent<float> fade;
         [SerializeField] private ScriptableObjectGraphicRaycaster raycaster;
         [SerializeField] private UnityEvent<Vector3> scale;
-        [SerializeField] private UnityWidget widget;
+        [SerializeField] private MonoBehaviourWidget widget;
         [SerializeField] private ScriptableObjectWidgetFactory widgetFactory;
 
         public void Hide()
