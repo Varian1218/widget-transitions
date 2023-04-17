@@ -1,4 +1,8 @@
 {
+  "author": {
+    "name": "Little Lion",
+    "url": "https://github.com/littlelion-libraries"
+  },
   "description": "",
   "dependencies": {
     "com.little-lion.numerics": "https://github.com/Varian1218/numerics.git",
@@ -11,5 +15,5 @@
   "keywords": [],
   "name": "com.little-lion.widget-transitions",
   "unity": "2021.3",
-  "version": "2.1.1"
+  "version": "2.1.2"
 }
