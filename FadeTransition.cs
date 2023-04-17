@@ -6,7 +6,7 @@ using Widgets;
 
 namespace WidgetTransitions
 {
-    public class FadeTransition : MonoBehaviour
+    public class FadeTransition : MonoBehaviour, ITransition
     {
         [SerializeField] private UnityEvent<float> fade;
         [SerializeField] private ScriptableObjectGraphicRaycaster raycaster;
