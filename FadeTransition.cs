@@ -2,16 +2,14 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityExtensions;
-using Widgets;
 
 namespace WidgetTransitions
 {
     public class FadeTransition : MonoBehaviour, ITransition
     {
+        [SerializeField] private UnityEvent<bool> interactable;
         [SerializeField] private UnityEvent<float> fade;
-        [SerializeField] private ScriptableObjectGraphicRaycaster raycaster;
-        [SerializeField] private MonoBehaviourWidget widget;
-        [SerializeField] private ScriptableObjectWidgetFactory widgetFactory;
+        [SerializeField] private UnityEvent<bool> visible;
 
         public void Hide()
         {
@@ -20,10 +18,10 @@ namespace WidgetTransitions
 
         public IEnumerator HideAsync()
         {
-            raycaster.Enabled = false;
+            interactable.Invoke(false);
             yield return FadeUtils.HideAsync(fade.Invoke);
-            widgetFactory.DestroyWidget(widget);
-            raycaster.Enabled = true;
+            visible.Invoke(false);
+            interactable.Invoke(true);
         }
 
         public void Show()
@@ -33,9 +31,10 @@ namespace WidgetTransitions
 
         public IEnumerator ShowAsync()
         {
-            raycaster.Enabled = false;
+            interactable.Invoke(false);
+            visible.Invoke(true);
             yield return FadeUtils.ShowAsync(fade.Invoke);
-            raycaster.Enabled = true;
+            interactable.Invoke(true);
         }
     }
 }
