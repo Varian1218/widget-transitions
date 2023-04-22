@@ -1,10 +1,8 @@
-﻿using System.Collections;
-
-namespace WidgetTransitions
+﻿namespace WidgetTransitions
 {
     public interface ITransition
     {
-        IEnumerator HideAsync();
-        IEnumerator ShowAsync();
+        void BeginStep(bool negative, float time);
+        bool Step(float dt);
     }
 }

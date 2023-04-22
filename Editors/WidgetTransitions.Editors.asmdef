@@ -1,11 +1,12 @@
 {
-    "name": "WidgetTransitions",
+    "name": "WidgetTransitions.Editors",
     "rootNamespace": "",
     "references": [
-        "GUID:b705f2443fdbdd84eaa5f642ca45d381",
-        "GUID:95872b0452b4af94fb71c718aaec9e62"
+        "GUID:2eb8a60eaf318e64685c362ef891dd8e"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

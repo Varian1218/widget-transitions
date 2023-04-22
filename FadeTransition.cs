@@ -1,40 +1,35 @@
-﻿using System.Collections;
+﻿using Interpolations;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityExtensions;
 
 namespace WidgetTransitions
 {
-    public class FadeTransition : MonoBehaviour, ITransition
+    public class FadeTransition : MonoBehaviour, ISerializationCallbackReceiver, ITransition
     {
-        [SerializeField] private UnityEvent<bool> interactable;
         [SerializeField] private UnityEvent<float> fade;
-        [SerializeField] private UnityEvent<bool> visible;
+        private Transition _transition;
 
-        public void Hide()
+        public void BeginStep(bool negative, float time)
         {
-            StartCoroutine(HideAsync());
+            _transition.BeginStep(negative, time);
         }
 
-        public IEnumerator HideAsync()
+        public void OnBeforeSerialize()
         {
-            interactable.Invoke(false);
-            yield return FadeUtils.HideAsync(fade.Invoke);
-            visible.Invoke(false);
-            interactable.Invoke(true);
         }
 
-        public void Show()
+        public void OnAfterDeserialize()
         {
-            StartCoroutine(ShowAsync());
+            _transition = new Transition
+            {
+                Interpolate = InterpolationUtility.EaseOutBack,
+                Set = fade.Invoke
+            };
         }
 
-        public IEnumerator ShowAsync()
+        public bool Step(float dt)
         {
-            interactable.Invoke(false);
-            visible.Invoke(true);
-            yield return FadeUtils.ShowAsync(fade.Invoke);
-            interactable.Invoke(true);
+            return _transition.Step(dt);
         }
     }
 }

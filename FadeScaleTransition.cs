@@ -1,42 +1,42 @@
-﻿using System.Collections;
+﻿using Interpolations;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityExtensions;
-using Widgets;
 
 namespace WidgetTransitions
 {
-    public class FadeScaleTransition : MonoBehaviour, ITransition
+    public class FadeScaleTransition : MonoBehaviour, ISerializationCallbackReceiver, ITransition
     {
         [SerializeField] private UnityEvent<float> fade;
-        [SerializeField] private ScriptableObjectGraphicRaycaster raycaster;
-        [SerializeField] private UnityEvent<Vector3> scale;
-        [SerializeField] private MonoBehaviourWidget widget;
-        [SerializeField] private ScriptableObjectWidgetFactory widgetFactory;
+        [SerializeField] private Transform scale;
+        private Transition _transition;
 
-        public void Hide()
+        public void BeginStep(bool negative, float time)
         {
-            StartCoroutine(HideAsync());
+            _transition.BeginStep(negative, time);
         }
 
-        public IEnumerator HideAsync()
+        public void OnBeforeSerialize()
         {
-            raycaster.Enabled = false;
-            yield return FadeScaleUtils.HideAsync(fade.Invoke, scale.Invoke);
-            widgetFactory.DestroyWidget(widget);
-            raycaster.Enabled = true;
         }
 
-        public void Show()
+        public void OnAfterDeserialize()
         {
-            StartCoroutine(ShowAsync());
+            _transition = new Transition
+            {
+                Interpolate = InterpolationUtility.EaseOutBack,
+                Set = Set
+            };
         }
 
-        public IEnumerator ShowAsync()
+        private void Set(float f)
         {
-            raycaster.Enabled = false;
-            yield return FadeScaleUtils.ShowAsync(fade.Invoke, scale.Invoke);
-            raycaster.Enabled = true;
+            fade.Invoke(f);
+            scale.localScale = Vector3.LerpUnclamped(Vector3.zero, Vector3.one, f);
+        }
+
+        public bool Step(float dt)
+        {
+            return _transition.Step(dt);
         }
     }
 }
