@@ -2,7 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace WidgetTransitions.Editors
+namespace Transitions.Unity.Editors
 {
     [CustomEditor(typeof(MoveTransition))]
     public class MoveTransitionEditor : Editor

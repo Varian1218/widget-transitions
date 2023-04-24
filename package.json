@@ -3,14 +3,11 @@
     "name": "Little Lion",
     "url": "https://github.com/littlelion-libraries"
   },
-  "dependencies": {
-    "com.little-lion.interpolations": "https://github.com/littlelion-libraries/interpolations.git",
-    "com.little-lion.widgets": "https://github.com/littlelion-libraries/widgets.git"
-  },
+  "dependencies": {},
   "description": "",
   "displayName": "Widget Transitions",
   "keywords": [],
   "name": "com.little-lion.widget-transitions",
   "unity": "2021.3",
-  "version": "3.1.0"
+  "version": "4.0.0"
 }

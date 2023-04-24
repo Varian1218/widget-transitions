@@ -1,4 +1,4 @@
-﻿namespace WidgetTransitions
+﻿namespace Transitions
 {
     public interface ITransition
     {

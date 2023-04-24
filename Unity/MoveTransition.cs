@@ -1,7 +1,7 @@
 ﻿using Interpolations;
 using UnityEngine;
 
-namespace WidgetTransitions
+namespace Transitions.Unity
 {
     public class MoveTransition : MonoBehaviour, ISerializationCallbackReceiver, ITransition
     {

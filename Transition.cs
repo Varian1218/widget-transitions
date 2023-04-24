@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WidgetTransitions
+namespace Transitions
 {
     public class Transition : ITransition
     {

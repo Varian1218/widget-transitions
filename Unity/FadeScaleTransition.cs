@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace WidgetTransitions
+namespace Transitions
 {
     public class FadeScaleTransition : MonoBehaviour, ISerializationCallbackReceiver, ITransition
     {
